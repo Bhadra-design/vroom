@@ -5,10 +5,12 @@ import Navbar from '@/components/Navbar';
 import Sidebar from '@/components/Sidebar';
 
 export const metadata: Metadata = {
-  title: 'VROOm',
-  description: 'A workspace for your team, powered by Stream Chat and Clerk.',
-};
-
+  title: "VROOm",
+  description: "Video Conferencing Platform",
+  icons: {
+    icon: "/icons/logo.svg",
+  }
+}
 const RootLayout = ({ children }: Readonly<{children: ReactNode}>) => {
   return (
     <main className="relative">
