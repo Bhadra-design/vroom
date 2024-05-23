@@ -121,7 +121,6 @@ const MeetingTypeList = () => {
                 setValues({ ...values, description: e.target.value });
               }}
             />
-            
           </div>
           <div className="flex w-full flex-col gap-2.5">
             <label>Select Date and Time</label>
@@ -160,10 +159,8 @@ const MeetingTypeList = () => {
         title="Start an Instant Meeting"
         className="text-center"
         buttonText="Start Meeting"
-        handleClick={createMeeting}
       />
     </section>
   );
 };
-
 export default MeetingTypeList;
