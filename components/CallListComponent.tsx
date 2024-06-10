@@ -45,6 +45,22 @@ const CallListComponent = ({
     }
   };
 
+  useEffect(() => {
+    const fetchRecordings = async () => {
+      const callData = await Promise.all(
+        callRecordings?.map((meeting) => meeting.queryRecordings())
+      );
+
+      const recordings = callData
+        .filter((call) => call.recordings.length > 0)
+        .flatMap((call) => call.recordings);
+
+      setRecordings(recordings);
+    };
+
+    if (type === "recordings") fetchRecordings();
+  }, [type, callRecordings]);
+
   const calls = getCall();
   const noCallsMessage = getNoCallsMessage();
 
@@ -64,11 +80,11 @@ const CallListComponent = ({
                 : "icons/recordings.svg"
             }
             title={
-              (meeting as Call).state.custom.description.substring(0, 25) ||
+              (meeting as Call).state.custom?.description.substring(0, 25) ||
               "No Title"
             }
             date={
-              meeting.state.startsAt?.toLocaleString() ||
+              meeting.state?.startsAt?.toLocaleString() ||
               meeting.start_time.toLocaleString()
             }
             isPreviousMeeting={type === "ended"}
